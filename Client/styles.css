@@ -1,0 +1,165 @@
+:root{
+  --max-square-size: 3rem;
+  --background: white;
+  --grid-columns: 8;
+}
+
+*, *::before, *::after{
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body{
+  font-family: sans-serif;
+  font-weight: 800;
+}
+
+section{
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  display: inline-grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(1rem, var(--max-square-size)));
+  margin: 6rem;
+  justify-content: center;
+  align-content: center;
+  border: 0.2rem solid lime;
+  box-shadow: 0 0 0.5rem lime;
+}
+
+.container div{
+  position: relative;
+  display: flex;
+  aspect-ratio: 1;
+  background-color: black;
+}
+
+.container div::after,
+.container div::before {
+  content: '';
+  position: absolute;
+  top: 0.1em;
+  bottom: 0.1em;
+  left: 0.1em;
+  right: 0.1em;
+  background-color: var(--background);
+  border-radius: 50%;
+}
+
+
+.container .red::after{
+  --background: red;
+}
+
+.container .blue::after{
+  --background: blue;
+}
+
+.container div:not(.red):not(.blue):hover::after{
+  cursor: pointer;
+  --background: red;
+  opacity: 0.5;
+}
+
+.container.blues-turn div:not(.red):not(.blue):hover::after{
+  --background: blue;
+}
+
+.endscreen, .room-select{
+  position: fixed;
+  color: lime;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+.endscreen div, .room-select form{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 2rem;
+  color: lime;
+  max-width: 80%;
+  min-width: 25%;
+}
+
+input{
+  border-color: lime;
+  background-color: black;
+  color: inherit;
+  padding: 0.7em 0.3em;
+  margin-top: 1em;
+  font-weight: 800;
+}
+
+input:focus{
+  border-color: black;
+  background-color: lime;
+  color: black;
+  outline: none;
+}
+
+.btn-new-game, .btn-join-room{
+  padding: 0.5em 4em;
+  margin-top: 2em;
+  border: 0.3em solid lime;
+  font-size: 1.5rem;
+  background-color: black;
+  color: inherit;
+  min-width: 75%;
+  align-self: center;
+  text-align: cented;
+}
+
+.btn-new-game:hover, .btn-join-room:hover{
+  cursor: pointer;
+  background-color: lime;
+  border-color: black;
+  color: black;
+}
+
+.container div.winning{
+  overflow: visible;
+  animation-name: show-winning;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+.disabled{
+  pointer-events: none;
+}
+
+@keyframes show-winning {
+  50%{
+    transform: scale(1.3);
+  }
+  100%{
+    transform: scale(1.15);
+    background-color: gold;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .btn-join-room, .btn-new-game{
+    margin-top: 0.5em;
+    padding: 0;
+    min-width: 100%;
+  }
+
+  .container{
+    margin: 4rem 2rem;
+  }
+
+  .endscreen div, .room-select form{
+    min-width: 60%;
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Connect Four Multiplayer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="game.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="room-select" style="display: none">
+    <form id="form">
+      <label for="room">Join room</label>
+      <input type="text" id="room" name="room" placeholder="Room name">
+      <button class="btn-join-room" type="submit">Join</button>
+    </form>
+    </div>
+    <section>
+      <div class="container">
+      </div>
+    </section>
+    <div class="endscreen" style="display: none">
+      <div>
+        <p></p>
+        <button class="btn-new-game">New game</button>
+      </div>
+    </div>
+  </body>
+</html>
